@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inventory Management System{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/">Home</a>
+            <a href="/add">Add Item</a>
+         
+            <!-- Add more navbar links as needed -->
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        <!-- This block will be overridden by child templates -->
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <!-- Footer content goes here -->
+        </div>
+    </footer>
+</body>
+</html>
