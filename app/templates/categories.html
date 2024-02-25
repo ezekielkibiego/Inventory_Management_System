@@ -1,17 +1,14 @@
-<!-- templates/categories.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-</head>
-<body>
-    <h1>Categories</h1>
-    <ul>
-        {% for category in categories %}
-            <li>{{ category.name }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+    <div class="categories-container">
+        <h1 class="categories-heading">Categories</h1>
+        <ul class="categories-list">
+            {% for category in categories %}
+                <li class="category-item">{{ category.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

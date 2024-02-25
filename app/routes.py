@@ -1,7 +1,46 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response
 from app.models import Inventory, Category, User, db
+from flask import request, jsonify
+import pdfkit
+from sqlalchemy import func
+from io import BytesIO
+import plotly.graph_objs as go
 
 bp = Blueprint('main', __name__)
+
+
+@bp.route('/search')
+def search_inventory():
+    search_query = request.args.get('query')
+    sort_option = request.args.get('sort')
+
+    # Query database based on search query and sort option
+    query = Inventory.query
+
+    if search_query:
+        query = query.filter(
+            Inventory.name.ilike(f'%{search_query}%') |
+            Inventory.description.ilike(f'%{search_query}%')
+        )
+
+    if sort_option:
+        if sort_option == 'name':
+            query = query.order_by(Inventory.name)
+        elif sort_option == 'quantity':
+            query = query.order_by(Inventory.quantity)
+        elif sort_option == 'price':
+            query = query.order_by(Inventory.price)
+        elif sort_option == 'date_added':
+            query = query.order_by(Inventory.date_added)
+        else:
+            # Handle invalid sort options
+            return render_template('error.html', message='Invalid sort option'), 400
+
+    # Execute the query and retrieve the results
+    inventory_items = query.all()
+
+    # Render the template with the search results
+    return render_template('search_results.html', inventory_items=inventory_items)
 
 @bp.route('/')
 def index():
@@ -151,6 +190,55 @@ def register():
 def require_login():
     if 'user_id' not in session and request.endpoint not in ['main.login', 'main.register']:
         return redirect(url_for('main.login'))
+
+
+def calculate_inventory_value():
+    total_value = db.session.query(db.func.sum(Inventory.quantity * Inventory.price)).scalar()
+    return total_value
+
+# Function to generate sales trends (dummy implementation)
+def get_sales_trends():
+    # Dummy implementation, replace with actual logic based on your sales data
+    return [('January', 1000), ('February', 1500), ('March', 2000)]
+
+
+def query_inventory_data():
+    # Query inventory data from the database
+    inventory_data = Inventory.query.all()
+    return inventory_data
+
+# Function to prepare data for plotting
+def prepare_data(inventory_data):
+    # Extract relevant data from inventory records
+    dates = [item.date_added for item in inventory_data]
+    quantities = [item.quantity for item in inventory_data]
+    prices = [item.price for item in inventory_data]
+
+    return dates, quantities, prices
+
+# Route to render the inventory chart
+@bp.route('/inventory_chart')
+def inventory_chart():
+    # Query inventory data from the database
+    inventory_items = Inventory.query.all()
+    inventory_value = calculate_inventory_value()
+
+    # Prepare data for the chart
+    chart_data = {
+        'data': [
+            {'x': [item.date_added.strftime('%Y-%m-%d') for item in inventory_items], 'y': [item.quantity for item in inventory_items], 'type': 'bar', 'name': 'Quantity'},
+            {'x': [item.date_added.strftime('%Y-%m-%d') for item in inventory_items], 'y': [item.price for item in inventory_items], 'type': 'line', 'name': 'Price'}
+        ],
+        'layout': {
+            'title': 'Inventory Data',
+            'xaxis': {'title': 'Date'},
+            'yaxis': {'title': 'Quantity/Price'}
+        }
+    }
+
+    # Render the template and pass the chart data
+    return render_template('inventory_chart.html', chart_json=chart_data,  inventory_value=inventory_value)
+
     
 from app import app
 app.register_blueprint(bp)

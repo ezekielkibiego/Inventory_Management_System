@@ -1,1 +1,120 @@
+/* style.css */
 
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Heading */
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+/* Container */
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+
+}
+
+/* Card */
+.item-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Card Heading */
+.item-card h3 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+}
+
+/* Card Paragraph */
+.item-card p {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Action Button */
+.action-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Update Button */
+.action-buttons button.update-btn {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/* Delete Button */
+.action-buttons button.delete-btn {
+    background-color: #f44336;
+    color: #fff;
+}
+
+/* Hover Effect */
+.action-buttons button:hover {
+    background-color: #ddd;
+}
+
+/* style.css */
+
+/* Search Form Container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-form button:hover {
+    background-color: #0056b3;
+}

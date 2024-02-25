@@ -4,31 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Inventory Management System{% endblock %}</title>
+    
     <link rel="stylesheet" href="/static/style.css">
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <link rel="stylesheet" href="/static/navbar.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_item.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='categories.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='update_item.css') }}">
+    <link rel="stylesheet" href="/static/footer.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="/">Home</a>
-            <a href="/add">Add Item</a>
-         
-            <!-- Add more navbar links as needed -->
-        </div>
-    </nav>
+    {% include 'navbar.html' %}
 
-    <div class="content">
         {% block content %}
-        <!-- This block will be overridden by child templates -->
         {% endblock %}
-    </div>
+  
 
-    <footer class="footer">
-        <div class="container">
-            <!-- Footer content goes here -->
-        </div>
-    </footer>
+    {% include 'footer.html' %}
+
 </body>
 </html>

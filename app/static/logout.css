@@ -1,0 +1,22 @@
+/* Container styles */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Login button link styles */
+.btn-login {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 16px; /* Updated font size */
+}
+
+.btn-login:hover {
+    color: #0056b3;
+}

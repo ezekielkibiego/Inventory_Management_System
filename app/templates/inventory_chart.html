@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %}Inventory Data{% endblock %} {% block
+content %}
+<div id="inventory_chart"></div>
+
+<!-- Script to render Plotly chart -->
+<script>
+  // Retrieve the chart JSON from Flask
+  var chartJson = {{ chart_json|safe }};
+
+  // Render the Plotly chart
+  Plotly.newPlot('inventory_chart', chartJson.data, chartJson.layout);
+</script>
+
+<h1>Inventory Reports</h1>
+
+    <h2>Total Inventory Value: ${{ inventory_value }}</h2>
+{% endblock %}

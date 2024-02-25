@@ -16,6 +16,12 @@ class Category(db.Model):
     def __repr__(self):
         return f"Category(id={self.id}, name={self.name})"
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
+
 class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -29,6 +35,20 @@ class Inventory(db.Model):
 
     category = db.relationship('Category', backref=db.backref('inventory_items', lazy=True))
 
-
     def __repr__(self):
-        return f"Inventory(id={self.id}, name={self.name}, quantity={self.quantity}, price={self.price}, description={self.description}, image_url={self.image_url}, category={self.category}, supplier={self.supplier})"
+        return f"Inventory(id={self.id}, name={self.name}, quantity={self.quantity}, price={self.price}, description={self.description}, image_url={self.image_url}, category={self.category}, supplier={self.supplier}, date_added={self.date_added})"
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'quantity': self.quantity,
+            'price': self.price,
+            'description': self.description,
+            'image_url': self.image_url,
+            'category': self.category.serialize(),
+            'supplier': self.supplier,
+            'date_added': self.date_added.strftime('%Y-%m-%d %H:%M:%S')
+        }
+        
+        

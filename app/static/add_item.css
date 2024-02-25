@@ -1,0 +1,68 @@
+/* style.css */
+
+/* Form heading */
+.add-item-heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Form container */
+.add-item-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form group */
+.add-item-form-group {
+    margin-bottom: 20px;
+}
+
+/* Form label */
+.add-item-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Form input and textarea */
+.add-item-input,
+.add-item-textarea,
+.add-item-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Form select */
+.add-item-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+/* Form button */
+.add-item-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Form button hover */
+.add-item-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+}

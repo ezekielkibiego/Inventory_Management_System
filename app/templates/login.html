@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
-    <h2>Login</h2>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form action="{{ url_for('main.login') }}" method="POST">
-        <label for="username_or_email">Username or Email:</label><br>
-        <input type="text" id="username_or_email" name="username_or_email"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Login">
-    </form>
-    <p>Don't have an account? <a href="{{ url_for('main.register') }}">Register</a></p>
+    <div class="container">
+        <h2>Login</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="{{ url_for('main.login') }}" method="POST">
+            <input type="text" id="username_or_email" name="username_or_email" class="input-field" placeholder="Username or Email">
+            <input type="password" id="password" name="password" class="input-field" placeholder="Password">
+            <input type="submit" value="Login" class="btn">
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('main.register') }}" class="btn-register">Register</a></p>
+    </div>
 </body>
 </html>

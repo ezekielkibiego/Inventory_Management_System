@@ -1,18 +1,10 @@
+<!-- search_results.html -->
 {% extends "base.html" %}
 
-{% block title %}Inventory Items{% endblock %}
+{% block title %}Search Results{% endblock %}
 
 {% block content %}
-    <h1 class="page-title">Inventory Items</h1>
-
-
-<div class="search-container">
-    <form action="{{ url_for('main.search_inventory') }}" method="GET" class="search-form">
-        <input type="text" name="query" placeholder="Search..." value="{{ request.args.get('query', '') }}">
-        <button type="submit">Search</button>
-    </form>
-</div>
-
+    <h1>Search Results</h1>
     <div class="item-container">
         {% for item in inventory_items %}
             <div class="item-card">
